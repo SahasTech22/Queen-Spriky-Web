@@ -21,10 +21,10 @@
       min-height: 100vh;
       background: #0b0d15;
       color: #a2a5b3;
-      display: flex; /* Center content */
+      display: flex; /* Use flexbox layout */
       flex-direction: column; /* Stack elements vertically */
-      justify-content: center;
-      align-items: center;
+      justify-content: center; /* Center the container vertically */
+      align-items: center; /* Center the container horizontally */
       position: relative; /* Position context for particles */
       overflow: hidden; /* Prevent overflow */
     }
@@ -106,6 +106,46 @@
       z-index: 1;
     }
 
+    footer {
+      background: #1c1f2b;
+      color: #a2a5b3;
+      padding: 1em 0;
+      text-align: center;
+      position: relative; /* Position footer relative to the page */
+      z-index: 1; /* Bring footer above particles */
+      width: 100%; /* Full width footer */
+    }
+
+    /* Popup styles */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 100; /* Above everything else */
+      display: none; /* Hidden by default */
+      text-align: center;
+    }
+
+    .popup button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #f5091c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Show the popup when active */
+    .popup.active {
+      display: block; /* Show when active */
+    }
+
     @media (max-width: 600px) {
       .container {
         width: 90%; /* Adjust the container width for small screens */
@@ -120,18 +160,36 @@
   <div class="container">
     <h1>QUEEN SPRIKY MD DEPLOY</h1>
     <div class="button-group">
-      <a href="newsbot.html"  class="animated-button" target="_blank">CHECKOUT NEWS BOT</a>
-      <a href="https://pair-web-public.koyeb.app/"  class="animated-button" target="_blank">GET SESSION ID</a>
-      <a href="deploy.html"  class="animated-button" target="_blank">DEPLOY</a>
-      <a href="https://www.youtube.com/watch?v=335WCN678hA&list=PLWCgVT-Ur5NQ7PmDhcicTV3iyBXy2BYd0&pp=iAQB"  class="animated-button" target="_blank">TUTORIAL</a>
-      <a href="https://chat.whatsapp.com/KQZ2CxCLL5D268bh6bmBMg"  class="animated-button" target="_blank">SUPPORT GROUP</a>
+      <a href="newsbot.html" class="animated-button" target="_blank" rel="noopener noreferrer">CHECKOUT NEWS BOT</a>
+      <a href="https://pair-web-public.koyeb.app/" class="animated-button" target="_blank" rel="noopener noreferrer">GET SESSION ID</a>
+      <a href="deploy.html" class="animated-button" target="_blank" rel="noopener noreferrer">DEPLOY</a>
+      <a href="https://www.youtube.com/watch?v=335WCN678hA&list=PLWCgVT-Ur5NQ7PmDhcicTV3iyBXy2BYd0&pp=iAQB" class="animated-button" target="_blank" rel="noopener noreferrer">TUTORIAL</a>
+      <a href="https://chat.whatsapp.com/KQZ2CxCLL5D268bh6bmBMg" class="animated-button" target="_blank" rel="noopener noreferrer">SUPPORT GROUP</a>
       <a href="contact.html"  class="animated-button" target="_blank">FIND DEVELOPER</a>
     </div>
+  </div>
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <h2>Notice</h2>
+    <p>Queen Spriky MD is still under development and will be released soon.<br>Thank you for vising our page and appreciate it.<br>Please stay tuned.<br>Subscribe to our channel for more updates.</p>
+    <button id="close-popup">Close</button>
   </div>
 
   <!-- Include Particles.js library -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
+    // Show the popup when the page loads
+    window.onload = function() {
+      document.getElementById('popup').classList.add('active');
+    };
+
+    // Close popup functionality
+    document.getElementById('close-popup').onclick = function() {
+      document.getElementById('popup').classList.remove('active');
+    };
+
+    // Particle settings
     particlesJS("particles-js", {
       particles: {
         number: { value: 80, density: { enable: true, value_area: 800 } },
