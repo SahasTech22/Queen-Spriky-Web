@@ -1,109 +1,187 @@
 <!DOCTYPE html>
-<html lang="en"> 
- <head> 
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <link rel="icon" type="image/png" sizes="32x32" href="./logo2.png"> 
-  <title>QUEEN SPRIKY MD</title> 
-
-  <!-- Styles for the webpage -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./logo2.png">
+  <title>QUEEN SPRIKY MD</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
-
-    :root {
-      --color-red: #ec1840;
-      --color-purple: #7a18ec;
-      --color-white: #fff;
-      --color-black-1: #111;
-      --color-black-2: #222;
-      --color-black-3: #444;
-      --color-grey: #888;
-      --color-darkgrey: #666;
-      --speed-normal: 0.5s;
-      --speed-fast: 0.8s;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      font-family: Poppins, sans-serif; /* Use a fallback font */
+      color: #f0f0f0;
     }
 
     body {
-      position: relative;
-      display: flex;
+      min-height: 100vh;
+      background: #0b0d15;
+      color: #a2a5b3;
+      display: flex; /* Center content */
+      flex-direction: column; /* Stack elements vertically */
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      background: url("news.jpg") no-repeat center center fixed; 
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-      color: var(--color-white);
+      position: relative; /* Position context for particles */
+      overflow: hidden; /* Prevent overflow */
     }
 
-    .links {
-  position: absolute;
-  bottom: calc(1cm - 37.79px); /* Adjusted value */
-  text-align: center;
-  width: 100%;
-}
+    /* Particle canvas */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0; /* Place behind other elements */
+    }
 
+    h1 {
+      color: white;
+      position: relative; /* Position context for text */
+      z-index: 1; /* Bring text above particles */
+    }
 
-    a {
-      position: relative;
-      display: inline-block;
-      margin: 20px;
-      padding: 15px 30px;
+    .container {
+      margin: 0 auto;
+      padding: 2em;
+      width: 300px;
+      background: #1c1f2b;
+      text-align: center;
+      border-radius: 10px;
+      position: relative; /* Make it a positioning context */
+      z-index: 1; /* Bring container above particles */
+      overflow: hidden; /* Prevent overflow from elements */
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column; /* Stack buttons vertically */
+      gap: 15px;
+    }
+
+    .animated-button {
+      padding: 15px 0; /* Adjust for uniform height */
+      background: #f5091c;
+      color: #fff;
       text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: bold;
-      font-size: 18px;
-      font-family: 'Orbitron', sans-serif;
-      color: var(--color-white);
-      border: 2px solid var(--color-red);
-      transition: var(--speed-normal);
-      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px; /* Adjusted to match button shape */
+      position: relative;
+      overflow: hidden;
+      width: 100%; /* Make buttons full width */
+      height: 50px; /* Set a fixed height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid transparent; /* Add a border */
+      background-clip: padding-box; /* Prevent background from covering the border */
     }
 
-    a:hover {
-      background: var(--color-red);
-      border: 2px solid var(--color-red);
-      color: var(--color-black-1);
-      box-shadow: 0px 0px 15px var(--color-red);
+    .animated-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: rgba(255, 255, 255, 0.5);
+      transition: all 0.5s ease;
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      z-index: 0;
     }
 
-    a:active {
-      background: var(--color-purple);
-      border: 2px solid var(--color-purple);
-      box-shadow: 0px 0px 15px var(--color-purple);
+    .animated-button:hover::before {
+      transform: translate(-50%, -50%) scale(1);
     }
 
-    @media screen and (max-width: 800px) {
-      .links {
-        bottom: 10%;
-      }
+    .animated-button:hover {
+      background: #f14141;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    }
 
-      a {
-        margin: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
+    .animated-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 90%; /* Adjust the container width for small screens */
       }
     }
   </style>
- </head> 
- <body> 
-  <div class="links">
-    <a href="index.html">WhatsApp Bot</a>
-    <a href="https://pair-web-public.koyeb.app/">SESSION ID</a>
-    <a href="deploy2.html">DEPLOY</a> 
-    <a href="https://www.youtube.com/watch?v=335WCN678hA&list=PLWCgVT-Ur5NQ7PmDhcicTV3iyBXy2BYd0&pp=iAQB">TUTORIAL</a> 
-    <a href="https://chat.whatsapp.com/KQZ2CxCLL5D268bh6bmBMg">SUPPORT GROUP</a> 
+</head>
+<body>
+  <!-- Particle background -->
+  <div id="particles-js"></div>
+  
+  <div class="container">
+    <h1>QUEEN SPRIKY MD DEPLOY</h1>
+    <div class="button-group">
+      <a href="index.html"  class="animated-button" target="_blank">CHECKOUT QUEEN SPRIKY BOT</a>
+      <a href="https://pair-web-public.koyeb.app/"  class="animated-button" target="_blank">GET SESSION ID</a>
+      <a href="deploy.html"  class="animated-button" target="_blank">DEPLOY</a>
+      <a href="https://www.youtube.com/watch?v=335WCN678hA&list=PLWCgVT-Ur5NQ7PmDhcicTV3iyBXy2BYd0&pp=iAQB"  class="animated-button" target="_blank">TUTORIAL</a>
+      <a href="https://chat.whatsapp.com/KQZ2CxCLL5D268bh6bmBMg"  class="animated-button" target="_blank">SUPPORT GROUP</a>
+      <a href="contact.html"  class="animated-button" target="_blank">FIND DEVELOPER</a>
+    </div>
   </div>
- <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8d2ec8e3da32603f","version":"2024.10.1","r":1,"token":"dcb4480910594212887aa1ed30a10566","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+
+  <!-- Include Particles.js library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#000000" },
+          polygon: { nb_sides: 5 },
+        },
+        opacity: { value: 0.5, random: false, anim: { enable: false } },
+        size: {
+          value: 3,
+          random: true,
+          anim: { enable: false },
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 6,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: { enable: false, rotateX: 600, rotateY: 1200 },
+        },
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
+          resize: true,
+        },
+        modes: {
+          grab: { distance: 400, line_linked: { opacity: 1 } },
+          bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+          repulse: { distance: 200, duration: 1 },
+          push: { particles_nb: 4 },
+          remove: { particles_nb: 2 },
+        },
+      },
+      retina_detect: true,
+    });
+  </script>
 </body>
 </html>
